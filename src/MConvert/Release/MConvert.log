@@ -1,0 +1,57 @@
+﻿Build started 08.03.2011 20:54:03.
+     1>Project "C:\meinedat\projects\MConvert\MConvert\MConvert\MConvert.vcxproj" on node 2 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Release\MConvert.lastbuildstate".
+       InitializeBuildStatus:
+         Creating "Release\MConvert.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I\meinedat\projects\MLibs1\Dep\ogre\OgreMain\include /I\meinedat\projects\MLibs1\Dep\ogre\include /I\meinedat\projects\MLibs1\Dep\newton /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Release\MConvert.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I\meinedat\projects\MLibs1\Dep\ogre\OgreMain\include /I\meinedat\projects\MLibs1\Dep\ogre\include /I\meinedat\projects\MLibs1\Dep\newton /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\MConvert.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt MConvert.cpp OpRaw2OPC.cpp
+         MConvert.cpp
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(121): warning C4305: 'argument' : truncation from 'double' to 'Ogre::Real'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(140): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(140): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(140): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(141): warning C4305: 'argument' : truncation from 'double' to 'Ogre::Real'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(156): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(156): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(156): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(335): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(336): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(337): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(338): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(339): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpMesh2Raw.h(340): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(69): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(70): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(71): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(72): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(73): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(74): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(154): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(155): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(156): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(157): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(158): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2NTC.h(159): warning C4305: '=' : truncation from 'double' to 'float'
+         OpRaw2OPC.cpp
+     1>c:\meinedat\projects\mconvert\mconvert\mconvert\OpRaw2OPC.h(203): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(253) : see declaration of 'fscanf'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\meinedat\projects\MConvert\MConvert\Release\MConvert.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:\meinedat\projects\MLibs1\Dep\ogre\lib\Release /LIBPATH:\meinedat\projects\MLibs1\Dep\newton OgreMain.lib newton.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\MConvert.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\meinedat\projects\MConvert\MConvert\Release\MConvert.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\meinedat\projects\MConvert\MConvert\Release\MConvert.lib" /MACHINE:X86 Release\MConvert.obj
+         Release\OpRaw2OPC.obj
+         Release\stdafx.obj
+         Generating code
+         Finished generating code
+         MConvert.vcxproj -> C:\meinedat\projects\MConvert\MConvert\Release\MConvert.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\meinedat\projects\MConvert\MConvert\Release\MConvert.exe;#1" /manifest Release\MConvert.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\MConvert.unsuccessfulbuild".
+         Touching "Release\MConvert.lastbuildstate".
+     1>Done Building Project "C:\meinedat\projects\MConvert\MConvert\MConvert\MConvert.vcxproj" (rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:07.79

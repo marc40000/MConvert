@@ -1,0 +1,183 @@
+19:24:00: Creating resource group General
+19:24:00: Creating resource group Internal
+19:24:00: Creating resource group Autodetect
+19:24:00: SceneManagerFactory for type 'DefaultSceneManager' registered.
+19:24:00: Registering ResourceManager for type Material
+19:24:00: Registering ResourceManager for type Mesh
+19:24:00: Registering ResourceManager for type Skeleton
+19:24:00: MovableObjectFactory for type 'ParticleSystem' registered.
+19:24:00: OverlayElementFactory for type Panel registered.
+19:24:00: OverlayElementFactory for type BorderPanel registered.
+19:24:00: OverlayElementFactory for type TextArea registered.
+19:24:00: Registering ResourceManager for type Font
+19:24:00: ArchiveFactory for archive type FileSystem registered.
+19:24:00: ArchiveFactory for archive type Zip registered.
+19:24:00: DDS codec registering
+19:24:00: FreeImage version: 3.13.1
+19:24:00: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+19:24:00: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2,pfm,pct,pict,pic,bay,bmq,cr2,crw,cs1,dc2,dcr,dng,erf,fff,hdr,k25,kdc,mdc,mos,mrw,nef,orf,pef,pxn,raf,raw,rdc,sr2,srf,arw,3fr,cine,ia,kc2,mef,nrw,qtk,rw2,sti,drf,dsc,ptx,cap,iiq,rwz
+19:24:00: Registering ResourceManager for type HighLevelGpuProgram
+19:24:00: Registering ResourceManager for type Compositor
+19:24:00: MovableObjectFactory for type 'Entity' registered.
+19:24:00: MovableObjectFactory for type 'Light' registered.
+19:24:00: MovableObjectFactory for type 'BillboardSet' registered.
+19:24:00: MovableObjectFactory for type 'ManualObject' registered.
+19:24:00: MovableObjectFactory for type 'BillboardChain' registered.
+19:24:00: MovableObjectFactory for type 'RibbonTrail' registered.
+19:24:00: Loading library .\RenderSystem_Direct3D9
+19:24:00: Installing plugin: D3D9 RenderSystem
+19:24:00: D3D9 : Direct3D9 Rendering Subsystem created.
+19:24:00: D3D9: Driver Detection Starts
+19:24:00: D3D9: Driver Detection Ends
+19:24:00: Plugin successfully installed
+19:24:00: Loading library .\Plugin_ParticleFX
+19:24:00: Installing plugin: ParticleFX
+19:24:00: Particle Emitter Type 'Point' registered
+19:24:00: Particle Emitter Type 'Box' registered
+19:24:00: Particle Emitter Type 'Ellipsoid' registered
+19:24:00: Particle Emitter Type 'Cylinder' registered
+19:24:00: Particle Emitter Type 'Ring' registered
+19:24:00: Particle Emitter Type 'HollowEllipsoid' registered
+19:24:00: Particle Affector Type 'LinearForce' registered
+19:24:00: Particle Affector Type 'ColourFader' registered
+19:24:00: Particle Affector Type 'ColourFader2' registered
+19:24:00: Particle Affector Type 'ColourImage' registered
+19:24:00: Particle Affector Type 'ColourInterpolator' registered
+19:24:00: Particle Affector Type 'Scaler' registered
+19:24:00: Particle Affector Type 'Rotator' registered
+19:24:00: Particle Affector Type 'DirectionRandomiser' registered
+19:24:00: Particle Affector Type 'DeflectorPlane' registered
+19:24:00: Plugin successfully installed
+19:24:00: Loading library .\Plugin_CgProgramManager
+19:24:00: Installing plugin: Cg Program Manager
+19:24:00: Plugin successfully installed
+19:24:00: Loading library .\Plugin_PCZSceneManager.dll
+19:24:00: Installing plugin: Portal Connected Zone Scene Manager
+19:24:00: PCZone Factory Type 'ZoneType_Default' registered
+19:24:00: Plugin successfully installed
+19:24:00: Loading library .\Plugin_OctreeZone.dll
+19:24:00: Installing plugin: Octree Zone Factory
+19:24:00: Plugin successfully installed
+19:24:00: Loading library .\Plugin_OctreeSceneManager
+19:24:00: Installing plugin: Octree & Terrain Scene Manager
+19:24:00: Plugin successfully installed
+19:24:00: *-*-* OGRE Initialising
+19:24:00: *-*-* Version 1.7.1 (Cthugha)
+19:24:00: Added resource location '../clientdata/cu' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../clientdata/cu/media' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../clientdata/cu/media/mmisc' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../clientdata/cu/media/mmisc/fonts' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../clientdata/cu/media/materials/scripts' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../clientdata/cu/media/materials/textures' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../clientdata/cu/media/gui' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../clientdata/cu/media/trees' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../clientdata/cu/media/creatures' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../clientdata/cu/media/buildings2' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../clientdata/cu/media/cubemap' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../data/cu/isles/00000000' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location '../temp' of type 'FileSystem' to resource group 'General'
+19:24:00: Added resource location 'C:\meinedat\projects\udicom\NeedleMachine\shaker3d\ogre' of type 'FileSystem' to resource group 'General'
+19:24:00: D3D9 : RenderSystem Option: Full Screen = No
+19:24:00: D3D9 : RenderSystem Option: VSync = Yes
+19:24:00: OGRE EXCEPTION(6:FileNotFoundException): 'ogre.cfg' file not found! in ConfigFile::load at src\OgreConfigFile.cpp (line 83)
+19:24:00: CPU Identifier & Features
+19:24:00: -------------------------
+19:24:00:  *   CPU ID: GenuineIntel: Intel(R) Core(TM)2 Quad CPU    Q6600  @ 2.40GHz
+19:24:00:  *      SSE: yes
+19:24:00:  *     SSE2: yes
+19:24:00:  *     SSE3: yes
+19:24:00:  *      MMX: yes
+19:24:00:  *   MMXEXT: yes
+19:24:00:  *    3DNOW: no
+19:24:00:  * 3DNOWEXT: no
+19:24:00:  *     CMOV: yes
+19:24:00:  *      TSC: yes
+19:24:00:  *      FPU: yes
+19:24:00:  *      PRO: yes
+19:24:00:  *       HT: no
+19:24:00: -------------------------
+19:24:00: D3D9 : Subsystem Initialising
+19:24:00: Registering ResourceManager for type Texture
+19:24:00: Registering ResourceManager for type GpuProgram
+19:24:00: ***************************************
+19:24:00: *** D3D9 : Subsystem Initialised OK ***
+19:24:00: ***************************************
+19:24:00: D3D9 : Created D3D9 Rendering Window 'MConvert' : 640x480, 32bpp
+19:24:00: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+19:24:00: D3D9: Vertex texture format supported - PF_FLOAT16_RGB
+19:24:00: D3D9: Vertex texture format supported - PF_FLOAT16_RGBA
+19:24:00: D3D9: Vertex texture format supported - PF_FLOAT32_RGB
+19:24:00: D3D9: Vertex texture format supported - PF_FLOAT32_RGBA
+19:24:00: D3D9: Vertex texture format supported - PF_FLOAT16_R
+19:24:00: D3D9: Vertex texture format supported - PF_FLOAT32_R
+19:24:01: D3D9: Vertex texture format supported - PF_FLOAT16_GR
+19:24:01: D3D9: Vertex texture format supported - PF_FLOAT32_GR
+19:24:01: RenderSystem capabilities
+19:24:01: -------------------------
+19:24:01: RenderSystem Name: Direct3D9 Rendering Subsystem
+19:24:01: GPU Vendor: nvidia
+19:24:01: Device Name: Monitor-3-NVIDIA GeForce 8400 GS
+19:24:01: Driver Version: 8.17.12.7533
+19:24:01:  * Fixed function pipeline: yes
+19:24:01:  * Hardware generation of mipmaps: yes
+19:24:01:  * Texture blending: yes
+19:24:01:  * Anisotropic texture filtering: yes
+19:24:01:  * Dot product texture operation: yes
+19:24:01:  * Cube mapping: yes
+19:24:01:  * Hardware stencil buffer: yes
+19:24:01:    - Stencil depth: 8
+19:24:01:    - Two sided stencil support: yes
+19:24:01:    - Wrap stencil values: yes
+19:24:01:  * Hardware vertex / index buffers: yes
+19:24:01:  * Vertex programs: yes
+19:24:01:  * Number of floating-point constants for vertex programs: 256
+19:24:01:  * Number of integer constants for vertex programs: 16
+19:24:01:  * Number of boolean constants for vertex programs: 16
+19:24:01:  * Fragment programs: yes
+19:24:01:  * Number of floating-point constants for fragment programs: 224
+19:24:01:  * Number of integer constants for fragment programs: 16
+19:24:01:  * Number of boolean constants for fragment programs: 16
+19:24:01:  * Geometry programs: no
+19:24:01:  * Number of floating-point constants for geometry programs: 0
+19:24:01:  * Number of integer constants for geometry programs: 0
+19:24:01:  * Number of boolean constants for geometry programs: 0
+19:24:01:  * Supported Shader Profiles: hlsl ps_1_1 ps_1_2 ps_1_3 ps_1_4 ps_2_0 ps_2_a ps_2_b ps_2_x ps_3_0 vs_1_1 vs_2_0 vs_2_a vs_2_x vs_3_0
+19:24:01:  * Texture Compression: yes
+19:24:01:    - DXT: yes
+19:24:01:    - VTC: no
+19:24:01:    - PVRTC: no
+19:24:01:  * Scissor Rectangle: yes
+19:24:01:  * Hardware Occlusion Query: yes
+19:24:01:  * User clip planes: yes
+19:24:01:  * VET_UBYTE4 vertex element type: yes
+19:24:01:  * Infinite far plane projection: yes
+19:24:01:  * Hardware render-to-texture: yes
+19:24:01:  * Floating point textures: yes
+19:24:01:  * Non-power-of-two textures: yes
+19:24:01:  * Volume textures: yes
+19:24:01:  * Multiple Render Targets: 4
+19:24:01:    - With different bit depths: yes
+19:24:01:  * Point Sprites: yes
+19:24:01:  * Extended point parameters: yes
+19:24:01:  * Max Point Size: 10
+19:24:01:  * Vertex texture fetch: yes
+19:24:01:  * Number of world matrices: 0
+19:24:01:  * Number of texture units: 8
+19:24:01:  * Stencil buffer depth: 8
+19:24:01:  * Number of vertex blend matrices: 0
+19:24:01:    - Max vertex textures: 4
+19:24:01:    - Vertex textures shared: no
+19:24:01:  * Render to Vertex Buffer : no
+19:24:01:  * DirectX per stage constants: yes
+19:24:01: DefaultWorkQueue('Root') initialising on thread main.
+19:24:01: Particle Renderer Type 'billboard' registered
+19:24:01: SceneManagerFactory for type 'PCZSceneManager' registered.
+19:24:01: MovableObjectFactory for type 'PCZLight' registered.
+19:24:01: MovableObjectFactory for type 'Portal' registered.
+19:24:01: MovableObjectFactory for type 'AntiPortal' registered.
+19:24:01: PCZone Factory Type 'ZoneType_Octree' registered
+19:24:01: PCZone Factory Type 'ZoneType_Terrain' registered
+19:24:01: SceneManagerFactory for type 'OctreeSceneManager' registered.
+19:24:01: SceneManagerFactory for type 'TerrainSceneManager' registered.
+19:24:01: Mesh: Loading C:\meinedat\projects\udicom\NeedleMachine\shaker3d\ogre\shaker5_SchuettlerTopf.mesh.
+19:24:01: Can't assign material shaker5/0___Material_#25 to SubEntity of model because this Material does not exist. Have you forgotten to define it in a .material script?

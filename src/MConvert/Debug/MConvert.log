@@ -1,0 +1,21 @@
+﻿Build started 29.06.2010 05:55:45.
+     1>Project "C:\meinedat\projects\MConvert\MConvert\MConvert\MConvert.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\MConvert.unsuccessfulbuild".
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       ManifestResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+       Manifest:
+         All outputs are up-to-date.
+       FinalizeBuildStatus:
+         Deleting file "Debug\MConvert.unsuccessfulbuild".
+         Touching "Debug\MConvert.lastbuildstate".
+     1>Done Building Project "C:\meinedat\projects\MConvert\MConvert\MConvert\MConvert.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.73
