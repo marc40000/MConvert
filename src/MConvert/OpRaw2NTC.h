@@ -8,7 +8,7 @@
 #pragma once
 
 #include "Newton.h"
-#include "dVector.h"
+#include "dMath/dVector.h"
 
 
 class OpRaw2NTC
@@ -23,14 +23,12 @@ public:
 
 private:
 
-	FILE * serf;
 
 	static void NSerializeFunction(void* serializeHandle, const void* buffer, int size)
 	{
-		_tprintf(_T("NSerialize size=%i\n"), size);
-		OpRaw2NTC * op = (OpRaw2NTC *)serializeHandle;
-		fwrite(buffer, 1, size, op->serf);
-	}
+		std::ofstream* ofp = (std::ofstream*)serializeHandle;
+		ofp->write((char*)buffer, size);
+	};
 
 	static void NCollisionIterator (void* userData, int vertexCount, const dFloat* FaceArray, int faceId)
 	{
@@ -53,16 +51,15 @@ private:
 	}
 
 
-	inline int NewtonConvert(TCHAR * infile, TCHAR * outfile)
+	inline int NewtonConvert(std::string infile, std::string outfile)
 	{
-		FILE *f;
 
 		NewtonWorld *nWorld=NewtonCreate(0,0);
 		NewtonCollision *col=NewtonCreateTreeCollision(nWorld,0);
 		NewtonTreeCollisionBeginBuild(col);
 		
-		printf("loading raw data\n");
-		_tfopen_s(&f, infile, _T("rt"));
+		std::cout << "loading raw data" << std::endl;
+		std::ifstream ifile(infile.c_str());
 		float x[9];
 		int n=0;
 		float bb[6];
@@ -72,7 +69,7 @@ private:
 		bb[3] = -1e32;
 		bb[4] = -1e32;
 		bb[5] = -1e32;
-		while (!feof(f))
+		while (!ifile.eof())
 		{
 			//fscanf(f,"%f %f %f  %f %f %f  %f %f %f\n",x+0,x+1,x+2, x+3,x+4,x+5, x+6,x+7,x+8);
 			//fscanf(f,"%f %f %f  %f %f %f  %f %f %f\n",x+0,x+1,x+2, x+6,x+7,x+8, x+3,x+4,x+5);
@@ -82,7 +79,16 @@ private:
 			//x[2]*=-1;
 			//x[8]*=-1;
 			//x[5]*=-1;
-			fscanf(f,"%f %f %f  %f %f %f  %f %f %f\n",x+0,x+1,x+2, x+3,x+4,x+5, x+6,x+7,x+8);
+			ifile >> x[0];
+			ifile >> x[1];
+			ifile >> x[2];
+			ifile >> x[3];
+			ifile >> x[4];
+			ifile >> x[5];
+			ifile >> x[6];
+			ifile >> x[7];
+			ifile >> x[8];
+			//fscanf(f,"%f %f %f  %f %f %f  %f %f %f\n",x+0,x+1,x+2, x+3,x+4,x+5, x+6,x+7,x+8);
 
 			bb[0] = MMin(bb[0], x[0]);
 			bb[1] = MMin(bb[1], x[1]);
@@ -108,25 +114,25 @@ private:
 			NewtonTreeCollisionAddFace(col,3,x,12,0);
 			n++;
 		}
-		fclose(f);
-
-		_tprintf(_T("RAW READ BB:   %f %f %f   %f %f %f\n"), bb[0], bb[1], bb[2], bb[3], bb[4], bb[5]);
+		ifile.close();
+		std::cout << "RAW READ BB:    " <<  bb[0] << " " << bb[1] << " " << bb[2] << "    " << bb[3] << " " << bb[4] << " " << bb[5] << std::endl;
+		//_tprintf(_T("RAW READ BB:   %f %f %f   %f %f %f\n"), bb[0], bb[1], bb[2], bb[3], bb[4], bb[5]);
 		
 
-		printf("building NewtonTreeCollision from %u faces\n",n);
+		std::cout << "building NewtonTreeCollision from " << n << " faces" << std::endl;
 		NewtonTreeCollisionEndBuild(col,1);
 
-		printf("\nwriting ntc file\n");
-		_tfopen_s(&serf, outfile, _T("wb"));
+		std::cout << "\nwriting ntc file" << std::endl;
+		std::ofstream of(outfile.c_str());
 		int mconvertversion = 0;
-		fwrite(&mconvertversion, sizeof(int), 1, f);
-		_tprintf(_T("MConvertVersion: %i\n"), mconvertversion);
+		of.write((char*)(&mconvertversion), sizeof(int));
+		std::cout << "MConvertVersion: " << mconvertversion << std::endl;
 		int newtonversion = NewtonWorldGetVersion();
-		_tprintf(_T("NewtonWorldGetVersion: %i\n"), newtonversion);
-		fwrite(&newtonversion, sizeof(int), 1, f);
-		fwrite(bb, sizeof(float), 6, f);
-		NewtonCollisionSerialize(nWorld, col, NSerializeFunction, this);
-		fclose(serf);
+		std::cout << "NewtonWorldGetVersion: " << newtonversion << std::endl;
+		of.write((char*)(&newtonversion), sizeof(int));
+		of.write((char*)(bb), sizeof(float)* 6);
+		NewtonCollisionSerialize(nWorld, col, NSerializeFunction, &of);
+		of.close();
 
 
 		//float bb[6];
@@ -147,7 +153,8 @@ private:
 			bb[i] = point[i];
 			//bb[i] = -(point % dir);
 		}
-		_tprintf(_T("NTC BB:   %f %f %f   %f %f %f\n"), bb[0], bb[1], bb[2], bb[3], bb[4], bb[5]);
+		std::cout << "NTC BB:    " <<  bb[0] << " " << bb[1] << " " << bb[2] << "    " << bb[3] << " " << bb[4] << " " << bb[5] << std::endl;
+		//_tprintf(_T("NTC BB:   %f %f %f   %f %f %f\n"), bb[0], bb[1], bb[2], bb[3], bb[4], bb[5]);
 
 
 		float bbiter[6];
@@ -162,14 +169,13 @@ private:
 					0, 0, 1, 0,
 					0, 0, 0, 1};
 		NewtonCollisionForEachPolygonDo(col, matrix, NCollisionIterator, bbiter);
-		_tprintf(_T("NTC BBITER:   %f %f %f   %f %f %f\n"), bbiter[0], bbiter[1], bbiter[2], bbiter[3], bbiter[4], bbiter[5]);
-
+		std::cout << "NTC BBITER:    " <<  bbiter[0] << " " << bbiter[1] << " " << bbiter[2] << "    " << bbiter[3] << " " << bbiter[4] << " " << bbiter[5] << std::endl;
 
 		return 0;
 	}
 
 public:
-	inline int Do(TCHAR * infile, TCHAR * outfile)
+	inline int Do(std::string infile, std::string outfile)
 	{
 		int res;
 		res = NewtonConvert(infile, outfile);

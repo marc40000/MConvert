@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include <iostream>
 
 #include "OpMesh2Raw.h"
 //#include "OpBSP2Raw.h"
@@ -15,12 +16,12 @@
 
 void PrintHelp()
 {
-	_tprintf(_T("Usage:\n"));
-	_tprintf(_T("    MConvert {op} {infile} {outfile}\n"));
-	_tprintf(_T("Parameters:\n"));
-	_tprintf(_T("    op      : mesh2raw, raw2opc, raw2ntc, mesh2opc, mesh2ntc\n"));
-	_tprintf(_T("    infile  : input filename\n"));
-	_tprintf(_T("    outfile : output filename\n"));
+	std::cout << "Usage:" << std::endl;
+	std::cout << "    MConvert {op} {infile} {outfile}" << std::endl;
+	std::cout << "Parameters:" << std::endl;
+	std::cout << "    op      : mesh2raw, raw2opc, raw2ntc, mesh2opc, mesh2ntc" << std::endl;
+	std::cout << "    infile  : input filename" << std::endl;
+	std::cout << "    outfile : output filename" << std::endl;
 }
 
 const unsigned int MConvertOpMesh2Raw = 0;
@@ -31,158 +32,149 @@ const unsigned int MConvertOpRaw2NTC = 3;
 const unsigned int MConvertOpMesh2OPC = 10;
 const unsigned int MConvertOpMesh2NTC = 11;
 
-int Go(int argc, _TCHAR* argv[])
-{
-	_tprintf(_T("MConvert v1   (c) 2009 M. Rochel\n"));
 
-	if ((argc != 3) && (argc != 4))
+#ifdef _WIN32
+int Go(int argc, _TCHAR* argv[])
+#else
+int Go(int argc, char* argv[])
+#endif
+{
+	std::string ops = argv[1];
+	std::string infile = argv[2];
+	std::string outfile;
+	
+	if (argc == 4)
 	{
-		PrintHelp();
+		outfile = argv[3];
 	}
 	else
 	{
-		TCHAR * ops;
-		TCHAR * infile;
-		TCHAR * outfile;
-
-		TCHAR temp[1024];
-
-		ops = argv[1];
-		infile = argv[2];
-		if (argc == 4)
+		outfile = infile;
+		unsigned int n = infile.length() - 1;
+		bool ok = false;
+		while (n > 0)
 		{
-			outfile = argv[3];
-		}
-		else
-		{
-			outfile = temp;
-			_tcscpy_s(temp, 1024, infile);
-			unsigned int n = _tcslen(infile) - 1;
-			bool ok = false;
-			while (n > 0)
+			if (infile.at(n) == '.')
 			{
-				if (temp[n] == _T('.'))
-				{
-					temp[n] = 0;
-					ok = true;
-					break;
-				}
-				--n;
+				infile.at(n) = 0;
+				ok = true;
+				break;
 			}
-			if (!ok)
-			{
-				_tprintf(_T("Error: Input filename does not contain a '.'\n"));
-				return 1;
-			}
+			--n;
 		}
-
-		_tprintf(_T("Performing:\n"));
-		_tprintf(_T("    op      : %s\n"), ops);
-		_tprintf(_T("    infile  : %s\n"), infile);
-		_tprintf(_T("    outfile : %s\n"), outfile);
-
-		int op;
-		if (_tcscmp(ops, _T("mesh2raw")) == 0)
+		if (!ok)
 		{
-			op = MConvertOpMesh2Raw;
-		}
-		else
-		if (_tcscmp(ops, _T("bsp2raw")) == 0)
-		{
-			op = MConvertOpBSP2Raw;
-		}
-		else
-		if (_tcscmp(ops, _T("raw2opc")) == 0)
-		{
-			op = MConvertOpRaw2OPC;
-		}
-		else
-		if (_tcscmp(ops, _T("raw2ntc")) == 0)
-		{
-			op = MConvertOpRaw2NTC;
-		}
-		else
-		if (_tcscmp(ops, _T("mesh2opc")) == 0)
-		{
-			op = MConvertOpMesh2OPC;
-		}
-		else
-		if (_tcscmp(ops, _T("mesh2ntc")) == 0)
-		{
-			op = MConvertOpMesh2NTC;
-		}
-		else
-		{
-			op = -1;
-			_tprintf(_T("illegal op\n"));
-		}
-
-		if (op != -1)
-		{
-			int res;
-			switch (op)
-			{
-			case MConvertOpMesh2Raw:
-				{
-					OpMesh2Raw op;
-					res = op.Do(infile, outfile);
-					break;
-				}
-			case MConvertOpBSP2Raw:
-				{
-					//OpBSP2Raw op;
-					//res = op.Do(infile, outfile);
-					res = 0;
-					break;
-				}
-			case MConvertOpRaw2OPC:
-				{
-					OpRaw2OPC op;
-					res = op.Do(infile, outfile);
-					break;
-				}
-			case MConvertOpRaw2NTC:
-				{
-					OpRaw2NTC op;
-					res = op.Do(infile, outfile);
-					break;
-				}
-			case MConvertOpMesh2OPC:
-				{
-					OpMesh2OPC op;
-					res = op.Do(infile, outfile);
-					break;
-				}
-			case MConvertOpMesh2NTC:
-				{
-					OpMesh2NTC op;
-					_tcscat(outfile, _T(".ntc"));
-					res = op.Do(infile, outfile);
-					break;
-				}
-			default:
-				{
-					// should never happen
-					res = -1;
-				}
-			}
-
-			if (res == 0)
-			{
-				_tprintf(_T("The op returned %i => success!\n"), res);
-			}
-			else
-			{
-				_tprintf(_T("The op returned %i => failure!\n"), res);
-			}
+			std::cout << "Error: Input filename does not contain a '.'" << std::endl;
+			return 1;
 		}
 	}
+
+	std::cout << "Performing:" << std::endl;
+	std::cout << "    op      :" << ops << std::endl;
+	std::cout << "    infile  :" << infile << std::endl;
+	std::cout << "    outfile :" << outfile << std::endl;
+
+	int op;
+	if (ops == "mesh2raw")
+	{
+		op = MConvertOpMesh2Raw;
+	}
+	else
+	if (ops == "bsp2raw")
+	{
+		op = MConvertOpBSP2Raw;
+	}
+	else
+	if (ops == "raw2opc")
+	{
+		op = MConvertOpRaw2OPC;
+	}
+	else
+	if (ops == "raw2ntc")
+	{
+		op = MConvertOpRaw2NTC;
+	}
+	else
+	if (ops == "mesh2opc")
+	{
+		op = MConvertOpMesh2OPC;
+	}
+	else
+	if (ops == "mesh2ntc")
+	{
+		op = MConvertOpMesh2NTC;
+	}
+	else
+	{
+		return -1;
+		std::cout << "illegal op" << std::endl;
+	}
+
+
+	int res;
+	switch (op)
+	{
+	case MConvertOpMesh2Raw:
+		{
+			OpMesh2Raw op;
+			res = op.Do(infile, outfile);
+			break;
+		}
+	case MConvertOpBSP2Raw:
+		{
+			//OpBSP2Raw op;
+			//res = op.Do(infile, outfile);
+			res = 0;
+			break;
+		}
+	case MConvertOpRaw2OPC:
+		{
+			OpRaw2OPC op;
+			res = op.Do(infile, outfile);
+			break;
+		}
+	case MConvertOpRaw2NTC:
+		{
+			OpRaw2NTC op;
+			res = op.Do(infile, outfile);
+			break;
+		}
+	case MConvertOpMesh2OPC:
+		{
+			OpMesh2OPC op;
+			res = op.Do(infile, outfile);
+			break;
+		}
+	case MConvertOpMesh2NTC:
+		{
+			OpMesh2NTC op;
+			res = op.Do(infile, outfile + ".ntc");
+			break;
+		}
+	default:
+		{
+			std::cout << "invalid opcode, INTERNAL BUG, SHOULD NEVER HAPPEN" << std::endl;
+			return -1;
+		}
+	}
+
+	std::cout << "The op returned " << res << " => success!" << std::endl;
 
 	return 0;
 }
 
+#ifdef _WIN32
 int _tmain(int argc, _TCHAR* argv[])
+#else
+int main(int argc, char* argv[])
+#endif
 {
+	std::cout << "MConvert v1   (c) 2009 M. Rochel" << std::endl;
+	if ((argc != 3) && (argc != 4))
+	{
+		PrintHelp();
+		return -1;
+	}
 	int ret = Go(argc, argv);
 
 	return ret;

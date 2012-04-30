@@ -8,6 +8,9 @@
 #pragma once
 
 #include "Newton.h"
+#include <string>
+#include <iostream>
+#include <fstream>
 
 inline NewtonWorld * NewtonCreate(void * a, void * b)
 {
@@ -172,7 +175,7 @@ private:
 		}
 	}
 
-	inline int NewtonConvert(TCHAR * infile, TCHAR * outfile)
+	inline int NewtonConvert(std::string infile, std::string outfile)
 	{
 		vert=new float[100000000];
 		vertn=0;
@@ -180,17 +183,15 @@ private:
 		indexn=0;
 		unsigned int trin;
 
-		FILE *f;
-
 		NewtonWorld *nWorld=NewtonCreate(0,0);
 		NewtonCollision *col=NewtonCreateTreeCollision(nWorld,0);
 		NewtonTreeCollisionBeginBuild(col);
 		
-		printf("loading raw data\n");
-		_tfopen_s(&f, infile, _T("rt"));
+		std::cout << "loading raw data" << std::endl;
+		std::ifstream ifile(infile.c_str());
 		float x[9];
 		int n=0;
-		while (!feof(f))
+		while (!ifile.eof())
 		{
 			//fscanf(f,"%f %f %f  %f %f %f  %f %f %f\n",x+0,x+1,x+2, x+3,x+4,x+5, x+6,x+7,x+8);
 			//fscanf(f,"%f %f %f  %f %f %f  %f %f %f\n",x+0,x+1,x+2, x+6,x+7,x+8, x+3,x+4,x+5);
@@ -200,18 +201,25 @@ private:
 			//x[2]*=-1;
 			//x[8]*=-1;
 			//x[5]*=-1;
-			fscanf(f,"%f %f %f  %f %f %f  %f %f %f\n",x+0,x+1,x+2, x+3,x+4,x+5, x+6,x+7,x+8);
+			ifile >> x[0];
+			ifile >> x[1];
+			ifile >> x[2];
+			ifile >> x[3];
+			ifile >> x[4];
+			ifile >> x[5];
+			ifile >> x[6];
+			ifile >> x[7];
+			ifile >> x[8];
 
 			NewtonTreeCollisionAddFace(col,3,x,12,0);
 			n++;
 		}
-		fclose(f);
-
-		printf("building NewtonTreeCollision from %u faces\n",n);
+		ifile.close();
+		std::cout << "building NewtonTreeCollision from " << n << " faces" << std::endl;
 		NewtonTreeCollisionEndBuild(col,1);
 		NewtonBody *body=NewtonCreateBody(nWorld,col);
 
-		printf("converting NewtonTreeCollision to opc\n");
+		std::cout << "converting NewtonTreeCollision to opc" << std::endl;
 		//NewtonBodyForEachPolygonDo(body,&NCollisionIterator);
 		float matrix[16] = {1, 0, 0, 0,
 							0, 1, 0, 0,
@@ -221,22 +229,26 @@ private:
 
 		trin=indexn/3;
 
-		printf("created %u triangles\n",trin);
+		std::cout << "created " << trin << " triangles" << std::endl;
 
-		printf("\nwriting opc file\n");
-		_tfopen_s(&f, outfile, _T("wb"));
-		fwrite(&vertn,1,4,f);
-		fwrite(vert,1,12*vertn,f);
-		fwrite(&trin,1,4,f);
-		fwrite(index,1,12*trin,f);
-		fclose(f);
+		std::cout << std::endl << "writing opc file" << std::endl;
+		std::ofstream of(outfile.c_str());
+		//fwrite(&vertn,1,4,f);
+		of.write((char*)(&vertn), 4);
+		//fwrite(vert,1,12*vertn,f);
+		of.write((char*)(vert), 12*vertn);
+		//fwrite(&trin,1,4,f);
+		of.write((char*)(&trin), 4);
+		//fwrite(index,1,12*trin,f);
+		of.write((char*)(index), 12*trin);
+		of.close();
 
 		return 0;
 	}
 
 
 public:
-	inline int Do(TCHAR * infile, TCHAR * outfile)
+	inline int Do(std::string infile, std::string outfile)
 	{
 		int res;
 		//res = DirectConvert();

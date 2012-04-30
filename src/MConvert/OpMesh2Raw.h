@@ -41,19 +41,21 @@ private:
 	String mQuakeLevel;
 
 
-	inline int InitOgre(TCHAR * infile)
+	inline int InitOgre(std::string infile)
 	{
-		char infilepatha[1024];
-		wcstombs(infilepatha, infile, 1024);
-		// get the path only
-		char * p = strrchr(infilepatha, '\\');
-		if (p != 0)
+		std::string infilepatha;
 		{
-			*p = 0;
-		}
-		else
-		{
-			sprintf(infilepatha, ".");
+			// get the path only
+			#ifdef _WIN32
+				size_t pos = infile.find_last_of('\\');
+			#else
+				size_t pos = infile.find_last_of('/');
+			#endif
+			if(pos != std::string::npos) {
+				infilepatha = infile.substr(0, pos);
+			} else {
+				infilepatha = ".";
+			}
 		}
 
 #ifdef _DEBUG
@@ -144,12 +146,9 @@ private:
 		return 0;
 	}
 
-	inline int LoadMesh(TCHAR * filename)
+	inline int LoadMesh(std::string filename)
 	{
-		char filenamea[1024];
-		wcstombs(filenamea, filename, 1024);
-		
-		mModel = mSceneMgr->createEntity("model", filenamea);
+		mModel = mSceneMgr->createEntity("model", filename);
 		mModelNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
 		mModelNode->attachObject(mModel);
 		//mMapNode->translate(7500,300,7500);
@@ -158,7 +157,7 @@ private:
 		return 0;
 	}
 
-	inline int CreateRawFile(TCHAR * filename)
+	inline int CreateRawFile(std::string filename)
 	{
 		MeshPtr tree_mesh = mModel->getMesh();
 
@@ -324,13 +323,12 @@ private:
 			ibuf->unlock();
 			current_offset = next_offset;
 		}
-
-		FILE *f;
-		_tfopen_s(&f, filename, _T("wt"));
-		if (f == 0)
+		std::ofstream of(filename.c_str());
+		if (!of)
 		{
 			return 1;
 		}
+		of.precision(16);
 		float bb[6];
 		bb[0] = 1e32;
 		bb[1] = 1e32;
@@ -341,18 +339,19 @@ private:
 		for(size_t offs = 0;offs < _index_count;offs += 3)
 		{
 			std::vector<Vector3> verts;
-
-			fprintf(f,"%.16f %.16f %.16f\t  %.16f %.16f %.16f\t  %.16f %.16f %.16f\n",
-				_vertices[_indices[offs + 0]].x,
-				_vertices[_indices[offs + 0]].y,
-				_vertices[_indices[offs + 0]].z,
-				_vertices[_indices[offs + 1]].x,
-				_vertices[_indices[offs + 1]].y,
-				_vertices[_indices[offs + 1]].z,
-				_vertices[_indices[offs + 2]].x,
-				_vertices[_indices[offs + 2]].y,
-				_vertices[_indices[offs + 2]].z
-				);
+			//fprintf(f,"%.16f %.16f %.16f\t  %.16f %.16f %.16f\t  %.16f %.16f %.16f\n",
+			of	<<	_vertices[_indices[offs + 0]].x
+				<<	_vertices[_indices[offs + 0]].y
+				<<	_vertices[_indices[offs + 0]].z
+				<< "\t  "
+				<<	_vertices[_indices[offs + 1]].x
+				<<	_vertices[_indices[offs + 1]].y
+				<<	_vertices[_indices[offs + 1]].z
+				<< "\t  "
+				<<	_vertices[_indices[offs + 2]].x
+				<<	_vertices[_indices[offs + 2]].y
+				<<	_vertices[_indices[offs + 2]].z
+				<< std::endl;
 			float v0[3], v1[3], v2[3];
 			v0[0] = _vertices[_indices[offs + 0]].x;
 			v0[1] = _vertices[_indices[offs + 0]].y;
@@ -407,10 +406,9 @@ private:
 			bb[4] = MMax(bb[4], v2[1]);
 			bb[5] = MMax(bb[5], v2[2]);
 		}
-		fclose(f);
+		of.close();
 
-		_tprintf(_T("RAW BB:   %f %f %f   %f %f %f\n"), bb[0], bb[1], bb[2], bb[3], bb[4], bb[5]);
-
+		std::cout << "RAW BB:    " <<  bb[0] << " " << bb[1] << " " << bb[2] << "    " << bb[3] << " " << bb[4] << " " << bb[5] << std::endl;
 
 		delete[] _vertices;
 		delete[] _indices;
@@ -419,19 +417,19 @@ private:
 	}
 
 public:
-	inline int Do(TCHAR * infile, TCHAR * outfile)
+	inline int Do(std::string infile, std::string outfile)
 	{
-		_tprintf(_T("initializing Ogre\n"));
+		std::cout << "initializing Ogre" << std::endl;
 		InitOgre(infile);
-		_tprintf(_T("loading model %s\n"), infile);
+		std::cout << "loading model " << infile << std::endl;
 		LoadMesh(infile);
 		//LoadBsp();
 
-		_tprintf(_T("creating raw rile %s\n"), outfile);
+		std::cout << "creating raw rile " << outfile << std::endl;
 		CreateRawFile(outfile);
 		//CreateRawFileFromBsp(filenameout);
 
-		_tprintf(_T("done.\n"));
+		std::cout << "done." << std::endl;
 		
 		return 0;
 	}

@@ -14,15 +14,13 @@ public:
 	}
 
 public:
-	inline int Do(TCHAR * infile, TCHAR * outfile)
+	inline int Do(std::string infile, std::string outfile)
 	{
 		OpMesh2Raw op0;
-		int res = op0.Do(infile, _T("temp.raw"));
+		int res = op0.Do(infile, "temp.raw");
 
 		OpRaw2OPC op1;
-		res |= op1.Do(_T("temp.raw"), outfile);
-
-		_tunlink(_T("temp.raw"));
+		res |= op1.Do("temp.raw", outfile);
 		
 		return res;
 	}
